@@ -31,9 +31,6 @@ namespace BatalhaRPG.Controllers
         [HttpPost]
         public IActionResult Index(int opcao)
         {
-            // Lógica para processar a opção escolhida
-            // Aqui você pode usar a variável "opcao" para determinar qual ataque ou magia foi escolhido
-
             // Obtém o personagem atual do jogador
             var jogador = _personagens.GetPersonagem();
 
@@ -42,19 +39,31 @@ namespace BatalhaRPG.Controllers
             {
                 var ataqueEscolhido = jogador.NomesAtaques[opcao - 1];
                 // Faça algo com o ataque escolhido
+
+                // Exemplo de cálculo entre o valor armazenado e a defesa do oponente
+                var defesaOponente = ViewBag.PersonagemOponente.Defesa;
+                var resultado = ataqueEscolhido.Dano - defesaOponente;
+
+                // Faça algo com o resultado do cálculo
+                ViewBag.ResultadoBatalha = resultado;
             }
             else if (opcao <= jogador.NomesAtaques.Count + jogador.NomesMagia.Count)
             {
                 var magiaEscolhida = jogador.NomesMagia[opcao - jogador.NomesAtaques.Count - 1];
                 // Faça algo com a magia escolhida
+
+                // Exemplo de cálculo entre o valor armazenado e a defesa do oponente
+                var defesaOponente = ViewBag.PersonagemOponente.Defesa;
+                var resultado = magiaEscolhida.Poder - defesaOponente;
+
+                // Faça algo com o resultado do cálculo
+                ViewBag.ResultadoBatalha = resultado;
             }
             else
             {
                 // A opção escolhida é inválida
                 // Lógica para tratar erro ou mostrar mensagem ao jogador
             }
-
-            // Restante da lógica do jogo
 
             var personagemOponente = _personagens.GetPersonagem();
 

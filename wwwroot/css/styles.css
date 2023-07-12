@@ -1,0 +1,90 @@
+﻿.oponente-ataque-magia p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.ataque-magia-text {
+    position: relative;
+    display: inline-block;
+    padding: 0 10px; /* Ajuste o espaçamento entre "Ataque" e "Magia" conforme necessário */
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+    .ataque-magia-text::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-50%, -50%);
+        width: 6px; /* Ajuste o tamanho da bolinha conforme necessário */
+        height: 6px; /* Ajuste o tamanho da bolinha conforme necessário */
+        border-radius: 50%;
+        background-color: blue; /* Cor padrão da bolinha */
+        box-shadow: 0 0 6px 3px rgba(0, 0, 255, 0.4); /* Claridade da bolinha */
+        opacity: 1;
+        animation: blink-blue 1s infinite;
+    }
+
+    .ataque-magia-text.attack::before {
+        background-color: red; /* Cor da bolinha para "Ataque" */
+        box-shadow: 0 0 6px 3px rgba(255, 0, 0, 0.4); /* Claridade da bolinha para "Ataque" */
+        animation: blink-red 1s infinite;
+    }
+
+    .ataque-magia-text.magic::before {
+        background-color: blue; /* Cor da bolinha para "Magia" */
+        box-shadow: 0 0 6px 3px rgba(0, 0, 255, 0.4); /* Claridade da bolinha para "Magia" */
+    }
+
+.ataque-magia-container {
+    display: none;
+}
+
+@keyframes blink-blue {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes blink-red {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.resultado-batalha {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    animation: fade-in 1s ease-in-out;
+    opacity: 0;
+}
+
+
+
