@@ -1,0 +1,40 @@
+﻿@model BatalhaRPG.Model.Personagem
+
+<div style="display: flex; background-color: black; color: white;">
+    <div style="flex: 1;">
+        <h2>@Model.Nome</h2>
+        <img src="@Model.ImageUrl" alt="Imagem do Personagem" style="max-width: 200px; max-height: 200px;">
+        <p>Força: @Model.Forca</p>
+        <p>Defesa: @Model.Defesa</p>
+        <p>HP: @Model.HP</p>
+        <p>MP: @Model.MP</p>
+
+        <!-- Exibir as magias -->
+        <h3>Magias:</h3>
+        @foreach (var magia in Model.NomesMagia.Select((value, index) => new { Value = value, Index = index }))
+        {
+            <p>@(magia.Index + 1). @magia.Value.Nome (Custo de Mana: @magia.Value.CustoMana)</p>
+        }
+
+        <!-- Exibir os ataques -->
+        <h3>Ataques:</h3>
+        @foreach (var ataque in Model.NomesAtaques.Select((value, index) => new { Value = value, Index = index }))
+        {
+            <p>@(ataque.Index + 1). @ataque.Value.Nome</p>
+        }
+
+        <!-- Formulário para escolher ataque ou magia -->
+        <form method="post" action="">
+            <label for="opcao">Escolha o número da opção:</label>
+            <input type="number" id="opcao" name="opcao" required>
+            <button type="submit">Atacar</button>
+        </form>
+    </div>
+
+    <div style="flex: 1;">
+        <!-- Oponente -->
+        <h2>Oponente</h2>
+        <img src="@ViewBag.PersonagemOponente.ImageUrl" alt="Imagem do Oponente" style="max-width: 200px; max-height: 200px;">
+        <p>Informações do Oponente</p>
+    </div>
+</div>
